@@ -1,0 +1,154 @@
+{
+  "version": 1,
+  "cli": {
+    "defaultCollection": "@nrwl/angular"
+  },
+  "defaultProject": "demo-player-angular",
+  "schematics": {
+    "@nrwl/angular": {
+      "application": {
+        "linter": "eslint"
+      },
+      "library": {
+        "linter": "eslint"
+      },
+      "storybook-configuration": {
+        "linter": "eslint"
+      }
+    },
+    "@nrwl/angular:application": {
+      "style": "scss",
+      "linter": "eslint",
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
+    },
+    "@nrwl/angular:library": {
+      "style": "scss",
+      "linter": "eslint",
+      "unitTestRunner": "jest"
+    },
+    "@nrwl/angular:component": {
+      "style": "scss"
+    }
+  },
+  "projects": {
+    "demo-player-angular": {
+      "projectType": "application",
+      "root": "apps/demo-player-angular",
+      "sourceRoot": "apps/demo-player-angular/src",
+      "prefix": "rumblestudio",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/demo-player-angular",
+            "index": "apps/demo-player-angular/src/index.html",
+            "main": "apps/demo-player-angular/src/main.ts",
+            "polyfills": "apps/demo-player-angular/src/polyfills.ts",
+            "tsConfig": "apps/demo-player-angular/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "apps/demo-player-angular/src/favicon.ico",
+              "apps/demo-player-angular/src/assets"
+            ],
+            "styles": ["apps/demo-player-angular/src/styles.scss"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "apps/demo-player-angular/src/environments/environment.ts",
+                  "with": "apps/demo-player-angular/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "demo-player-angular:build:production"
+            },
+            "development": {
+              "browserTarget": "demo-player-angular:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "demo-player-angular:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/demo-player-angular/src/**/*.ts",
+              "apps/demo-player-angular/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/demo-player-angular"],
+          "options": {
+            "jestConfig": "apps/demo-player-angular/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "demo-player-angular-e2e": {
+      "root": "apps/demo-player-angular-e2e",
+      "sourceRoot": "apps/demo-player-angular-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/demo-player-angular-e2e/cypress.json",
+            "tsConfig": "apps/demo-player-angular-e2e/tsconfig.e2e.json",
+            "devServerTarget": "demo-player-angular:serve:development"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "demo-player-angular:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/demo-player-angular-e2e/**/*.{js,ts}"]
+          }
+        }
+      }
+    }
+  }
+}
