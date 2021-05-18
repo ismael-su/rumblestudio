@@ -1,0 +1,36 @@
+{
+	"implicitDependencies": {
+		"package.json": {
+			"dependencies": "*",
+			"devDependencies": "*"
+		},
+		".eslintrc.json": "*"
+	},
+	"affected": {
+		"defaultBase": "master"
+	},
+	"npmScope": "rumblestudio",
+	"tasksRunnerOptions": {
+		"default": {
+			"runner": "@nrwl/nx-cloud",
+			"options": {
+				"cacheableOperations": ["build", "lint", "test", "e2e"],
+				"accessToken": "YWNmMWY1OTUtNDM5YS00OThiLTliZDAtYzczZmMzMzQ0ZDBhfHJlYWQtd3JpdGU=",
+				"canTrackAnalytics": false,
+				"showUsageWarnings": true
+			}
+		}
+	},
+	"projects": {
+		"demo-player-angular": {
+			"tags": []
+		},
+		"demo-player-angular-e2e": {
+			"tags": [],
+			"implicitDependencies": ["demo-player-angular"]
+		},
+		"player-service": {
+			"tags": []
+		}
+	}
+}

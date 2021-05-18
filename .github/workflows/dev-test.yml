@@ -1,0 +1,30 @@
+name: Test dev
+
+on:
+  push:
+    branches: [ dev ]
+  pull_request:
+    branches: [ dev ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [ 14.x, ]
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: git fetch --no-tags --prune --depth=5 origin main
+      - run: npm ci
+      - run: npm run affected:build -- --base=origin/main
+      - run: npm run affected:lint -- --base=origin/main
+      - run: npm run affected:test -- --base=origin/main
+      - run: npm run affected:e2e -- --base=origin/main
