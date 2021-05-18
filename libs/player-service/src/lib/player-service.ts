@@ -643,6 +643,13 @@ export class PlayerService {
     });
   }
 
+  /**
+   * 
+   * Allows to generate a song object using an URL
+   * @param url 
+   * @param index 
+   * @returns 
+   */
   private generateSongFromUrl(url: string, index: number) {
     return {
       songTitle: 'Song ' + index,
