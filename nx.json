@@ -25,6 +25,9 @@
     "demo-player-angular-e2e": {
       "tags": [],
       "implicitDependencies": ["demo-player-angular"]
+    },
+    "player-service": {
+      "tags": []
     }
   }
 }
