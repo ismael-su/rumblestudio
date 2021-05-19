@@ -25,7 +25,7 @@ To use the library within your Angular project the best way is to use an Angular
 ```shell
 npm install -g @angular/cli # install Angular
 ng new demo-player-angular # Create a new Angular app
-cd demo-player-angula
+cd demo-player-angular
 ng g s audio # generate a service
 ```
 
@@ -62,12 +62,13 @@ export class AudioService extends PlayerService {
 
 	constructor() {
 		super(); // needed as this class extends the Rumble Player Service
-		this.addNewOnCallback(this.on);
+		this.addNewOnCallback((event: PlayerServiceEvent) => this.on(event));
 	}
-	private on(event: PlayerServiceEvent) {
+
+	on(event: PlayerServiceEvent) {
 		// We convert the events into RxJS behaviour subject
 		// so that you can subscribe to them the way you want.
-		console.log('[audioService](on) new event:', event);
+		console.log('[audioService](on) new event:', event, this);
 		this.playing$.next(this.isPlaying);
 		this.index$.next(this.index);
 		this.position$.next(this.position);
