@@ -28,6 +28,13 @@
     },
     "player-service": {
       "tags": []
+    },
+    "demo-player-angular-spotify": {
+      "tags": []
+    },
+    "demo-player-angular-spotify-e2e": {
+      "tags": [],
+      "implicitDependencies": ["demo-player-angular-spotify"]
     }
   }
 }
