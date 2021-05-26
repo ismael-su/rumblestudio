@@ -1,0 +1,128 @@
+$createColor: #f05368;
+$grey: rgba(204, 204, 204, 0.788);
+$radiusBorder: 5px;
+
+.playlistContent {
+	display: flex;
+	flex-wrap: wrap;
+	padding: 50px 0 0 50px;
+}
+
+.create {
+	background-color: white;
+	border: 1px dashed $createColor;
+	padding: 110px 60px;
+	border-radius: $radiusBorder;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	margin-right: 50px;
+
+	&:hover {
+		cursor: pointer;
+		background-color: $grey;
+	}
+
+	div {
+		background-color: $createColor;
+		color: white;
+		border-radius: $radiusBorder;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		width: 45px;
+		height: 45px;
+		font-size: 30px;
+		margin-bottom: 15px;
+	}
+}
+
+.playlist {
+	border-radius: $radiusBorder;
+	width: 225px;
+	background-size: cover;
+	background-position: center;
+	position: relative;
+	cursor: pointer;
+	border-style: none;
+
+	mat-icon {
+		z-index: 1;
+		position: absolute;
+		bottom: 30px;
+		left: 15px;
+		font-size: 40px;
+		color: white;
+	}
+
+	&:hover {
+		box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.26);
+	}
+}
+
+.pop-up {
+	position: fixed;
+	z-index: 1;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+	background-color: rgba(0, 0, 0, 0.4);
+
+	div {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		background-color: white;
+		width: 45%;
+		margin: 15% auto;
+		border-radius: $radiusBorder;
+		padding: 40px 0;
+		position: relative;
+	}
+
+	.close {
+		position: absolute;
+		cursor: pointer;
+		right: 50px;
+		top: 30px;
+	}
+
+	form {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+	}
+
+	input[type='text'] {
+		padding: 10px;
+		border-radius: $radiusBorder;
+		border: 1px solid $grey;
+		margin: 20px 0;
+	}
+
+	input[type='submit'] {
+		padding: 15px;
+		border-radius: $radiusBorder;
+		background-color: $createColor;
+		color: white;
+		border: none;
+
+		&:hover {
+			cursor: pointer;
+			background-color: #e7354c;
+		}
+	}
+}
+
+.pop-up-appear {
+	display: block;
+}
+
+.pop-up-disappear {
+	display: none;
+}

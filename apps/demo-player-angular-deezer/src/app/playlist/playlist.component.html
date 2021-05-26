@@ -1,0 +1,26 @@
+<div class="playlistContent">
+	<header>
+		<img
+			src="https://letempsdunvoyage.com/wp-content/uploads/2019/07/PLAYLIST-HOTEL-1170x780.png"
+			alt="album cover"
+		/>
+		<div>
+			<h1>Playlist 1</h1>
+			<p>by : xxxxx</p>
+		</div>
+	</header>
+
+	<div class="line"></div>
+
+	<div>
+		<ng-container *ngFor="let track of tracks; let i = index">
+			<rumblestudio-playlist-item
+				[index]="i"
+				[name]="track.songTitle"
+				[author]="track.author"
+				[album]="track.albumTitle"
+				[songCover]="track.songCover"
+			></rumblestudio-playlist-item>
+		</ng-container>
+	</div>
+</div>

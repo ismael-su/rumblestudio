@@ -1,0 +1,42 @@
+$createColor: #f05368;
+$grey: rgba(204, 204, 204, 0.788);
+
+header {
+	display: flex;
+	padding: 50px 0 0 100px;
+
+	img {
+		width: 400px;
+		margin-right: 50px;
+	}
+
+	div {
+		margin-top: 20px;
+
+		h1 {
+			margin-bottom: 20px;
+		}
+	}
+}
+
+.line {
+	height: 2px;
+	width: 90%;
+	background-color: $grey;
+	margin: 20px auto;
+}
+
+.tracks {
+	width: 100%;
+	border-collapse: collapse;
+
+	td {
+		text-align: center;
+	}
+
+	tbody {
+		tr {
+			margin-bottom: 10px;
+		}
+	}
+}

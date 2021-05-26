@@ -1,0 +1,75 @@
+$createColor: #f05368;
+$grey: rgba(204, 204, 204, 0.788);
+
+.player {
+	width: 100%;
+	height: 100px;
+	background-color: white;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	border-top: 1px solid $grey;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	flex-basis: 20%;
+
+	.button {
+		margin-left: 50px;
+
+		mat-icon {
+			font-size: 40px;
+			cursor: pointer;
+			user-select: none;
+		}
+
+		.play {
+			margin: 0 50px;
+		}
+	}
+
+	.barContent {
+		flex-basis: 70%;
+
+		.songInfo {
+			margin-bottom: 10px;
+			margin-left: 50px;
+		}
+	}
+
+	.linearBar {
+		display: flex;
+		position: relative;
+
+		p {
+			&:first-child {
+				width: 40px;
+			}
+		}
+
+		.fullBar {
+			height: 3px;
+			width: 60%;
+			background-color: rgb(160, 160, 160);
+			margin-top: 8px;
+			margin-left: 20px;
+			margin-right: 20px;
+
+			#progressBar {
+				height: 100%;
+				width: 0%;
+				background-color: $createColor;
+			}
+
+			&:hover {
+				transform: scaleY(1.75);
+				cursor: pointer;
+
+				#progressBar {
+					border-right: 5px solid #5a1c24;
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,22 @@
+<div
+	class="playlist-item"
+	(mouseenter)="mouseEnter()"
+	(mouseleave)="mouseLeave()"
+	(click)="playSong(index)"
+>
+	<p>
+		<span
+			*ngIf="!isOn; else playIcon"
+			[ngClass]="isPlaying ? 'playing' : null"
+			>{{ index + 1 }}</span
+		>
+		<ng-template #playIcon
+			><mat-icon #playIcon>play_circle_filled</mat-icon></ng-template
+		>
+	</p>
+	<p [ngClass]="isPlaying ? 'playing' : null">{{ name }}</p>
+	<p [ngClass]="isPlaying ? 'playing' : null">{{ author }}</p>
+	<p [ngClass]="isPlaying ? 'playing' : null">{{ album }}</p>
+	<p [ngClass]="isPlaying ? 'playing' : null">{{ getTime(index) }}</p>
+	<img src="{{ songCover }}" alt="song cover" />
+</div>

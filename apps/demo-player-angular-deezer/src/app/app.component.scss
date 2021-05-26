@@ -1,0 +1,73 @@
+$createColor: #f05368;
+$grey: rgba(204, 204, 204, 0.788);
+
+main {
+	height: 100%;
+}
+
+.content {
+	display: flex;
+	height: 100%;
+}
+
+.content > div:last-child {
+	flex-grow: 1;
+}
+
+.sidebar {
+	border-right: 1px solid $grey;
+	position: sticky;
+	top: 0px;
+
+	.title {
+		display: flex;
+		align-items: flex-start;
+		margin: 20px;
+		padding: 20px;
+
+		.mat-icon {
+			margin-top: 10px;
+			margin-right: 10px;
+		}
+	}
+
+	.menu {
+		display: flex;
+		flex-direction: column;
+		margin-top: 100px;
+
+		a {
+			display: flex;
+			margin-bottom: 20px;
+			color: rgb(70, 70, 70);
+			text-decoration: none;
+			padding-left: 80px;
+
+			p {
+				margin-top: 2px;
+				margin-left: 10px;
+			}
+
+			&:hover {
+				cursor: pointer;
+				color: $createColor;
+				a {
+					color: $createColor;
+				}
+			}
+		}
+
+		.linkActive {
+			border-left: 3px solid $createColor;
+
+			mat-icon {
+				margin-left: -3px;
+			}
+
+			p,
+			mat-icon {
+				color: $createColor;
+			}
+		}
+	}
+}

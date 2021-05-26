@@ -1,0 +1,24 @@
+<main>
+	<div class="content">
+		<div class="sidebar">
+			<div class="title">
+				<mat-icon>library_music</mat-icon>
+				<h1>RumbleDeezer</h1>
+			</div>
+			<div class="menu">
+				<a routerLink="/home" routerLinkActive="linkActive"
+					><mat-icon>home</mat-icon>
+					<p>Home</p></a
+				>
+				<a routerLink="/playlist" routerLinkActive="linkActive"
+					><mat-icon>music_note</mat-icon>
+					<p>Playlist</p></a
+				>
+			</div>
+		</div>
+		<div class="component-content">
+			<router-outlet></router-outlet>
+		</div>
+	</div>
+	<rumblestudio-player></rumblestudio-player>
+</main>

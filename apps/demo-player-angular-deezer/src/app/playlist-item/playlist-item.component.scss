@@ -1,0 +1,44 @@
+$createColor: #f05368;
+$grey: rgba(204, 204, 204, 0.788);
+
+.playlist-item {
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	padding: 15px 0;
+	width: 90%;
+	margin: 0 auto;
+
+	&:hover {
+		background-color: $grey;
+		cursor: pointer;
+
+		p {
+			color: $createColor;
+		}
+	}
+
+	.playing {
+		color: $createColor;
+	}
+
+	p {
+		height: 40px;
+		width: calc((100% - 15%) / 5);
+
+		&:first-child {
+			width: 15%;
+		}
+	}
+
+	mat-icon {
+		&:hover {
+			color: $createColor;
+			cursor: pointer;
+		}
+	}
+
+	img {
+		width: 80px;
+	}
+}

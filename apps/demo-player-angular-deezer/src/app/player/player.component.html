@@ -1,0 +1,29 @@
+<div class="player">
+	<div class="button">
+		<mat-icon (click)="prev()">skip_previous</mat-icon>
+
+		<mat-icon
+			(click)="changeState()"
+			*ngIf="isPause; else pause"
+			class="play"
+			>play_arrow</mat-icon
+		>
+		<ng-template #pause
+			><mat-icon (click)="changeState()" class="play"
+				>pause</mat-icon
+			></ng-template
+		>
+
+		<mat-icon (click)="next()">skip_next</mat-icon>
+	</div>
+	<div class="barContent">
+		<div class="songInfo">{{ songTitle }}</div>
+		<div class="linearBar">
+			<p>{{ timeLeft }}</p>
+			<div class="fullBar" (click)="updateTime($event)">
+				<div id="progressBar"></div>
+			</div>
+			<p>{{ songLength }}</p>
+		</div>
+	</div>
+</div>

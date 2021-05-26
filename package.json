@@ -111,5 +111,8 @@
 		"commitizen": {
 			"path": "./node_modules/cz-conventional-changelog"
 		}
+	},
+	"optionalDependencies": {
+		"fsevents": "^2.3.2"
 	}
 }

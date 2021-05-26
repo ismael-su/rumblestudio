@@ -1,0 +1,34 @@
+<div class="playlistContent">
+	<button (click)="popupAppear()" class="create">
+		<div>
+			<p>+</p>
+		</div>
+		<p>Create a playlist</p>
+	</button>
+	<a
+		routerLink="/playlist/1"
+		*ngIf="asPlaylist"
+		class="playlist"
+		[ngStyle]="{
+			backgroundImage:
+				'url(https://letempsdunvoyage.com/wp-content/uploads/2019/07/PLAYLIST-HOTEL-1170x780.png)'
+		}"
+	>
+		<mat-icon>play_circle_outline</mat-icon>
+	</a>
+</div>
+<div class="pop-up" [ngClass]="[popUpClass]">
+	<div>
+		<mat-icon (click)="popupAppear()" class="close">close</mat-icon>
+		<form #f="ngForm" (submit)="addPlaylist(f)">
+			<h1>Create my playlist</h1>
+			<input
+				type="text"
+				placeholder="RSS Feed Link"
+				ngModel
+				name="link"
+			/>
+			<input type="submit" value="create" />
+		</form>
+	</div>
+</div>
