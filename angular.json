@@ -427,6 +427,46 @@
 					}
 				}
 			}
+		},
+		"configs": {
+			"projectType": "library",
+			"root": "libs/configs",
+			"sourceRoot": "libs/configs/src",
+			"prefix": "rumblestudio",
+			"architect": {
+				"build": {
+					"builder": "@nrwl/angular:package",
+					"options": {
+						"project": "libs/configs/ng-package.json"
+					},
+					"configurations": {
+						"production": {
+							"tsConfig": "libs/configs/tsconfig.lib.prod.json"
+						},
+						"development": {
+							"tsConfig": "libs/configs/tsconfig.lib.json"
+						}
+					},
+					"defaultConfiguration": "production"
+				},
+				"test": {
+					"builder": "@nrwl/jest:jest",
+					"outputs": ["coverage/libs/configs"],
+					"options": {
+						"jestConfig": "libs/configs/jest.config.js",
+						"passWithNoTests": true
+					}
+				},
+				"lint": {
+					"builder": "@nrwl/linter:eslint",
+					"options": {
+						"lintFilePatterns": [
+							"libs/configs/src/**/*.ts",
+							"libs/configs/src/**/*.html"
+						]
+					}
+				}
+			}
 		}
 	}
 }

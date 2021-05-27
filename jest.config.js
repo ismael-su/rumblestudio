@@ -4,5 +4,6 @@ module.exports = {
 		'<rootDir>/libs/player-service',
 		'<rootDir>/apps/demo-player-angular-spotify',
 		'<rootDir>/apps/demo-player-react-spotify',
+		'<rootDir>/libs/configs',
 	],
 };

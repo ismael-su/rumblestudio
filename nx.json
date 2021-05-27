@@ -45,6 +45,9 @@
 		"demo-player-react-spotify-e2e": {
 			"tags": [],
 			"implicitDependencies": ["demo-player-react-spotify"]
+		},
+		"configs": {
+			"tags": []
 		}
 	}
 }
