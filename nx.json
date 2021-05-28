@@ -52,6 +52,16 @@
 		"demo-player-angular-deezer-e2e": {
 			"tags": [],
 			"implicitDependencies": ["demo-player-angular-deezer"]
+		},
+		"player-configs": {
+			"tags": []
+		},
+		"demo-player-angular-configs": {
+			"tags": []
+		},
+		"demo-player-angular-configs-e2e": {
+			"tags": [],
+			"implicitDependencies": ["demo-player-angular-configs"]
 		}
 	}
 }
