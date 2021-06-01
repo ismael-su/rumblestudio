@@ -1,7 +1,7 @@
 const config1 = {
 	dimensions: {
-		height: '30px',
-		width: '600px',
+		height: '120px',
+		width: '300px',
 	},
 	layout: {
 		rows: 1,
@@ -11,14 +11,34 @@ const config1 = {
 		{
 			task: 'play',
 			cssClasses: '',
+			width: '275px',
+			height: '50px',
+			x: '10px',
+			y: '5px',
+		},
+		{
+			task: 'stop',
+			cssClasses: '',
+			width: '50px',
+			height: '50px',
+			x: '10px',
+			y: '60px',
 		},
 		{
 			task: 'bar',
 			cssClasses: '',
+			width: '140px',
+			height: '50px',
+			x: '80px',
+			y: '80px',
 		},
 		{
 			task: 'pause',
 			cssClasses: '',
+			width: '50px',
+			height: '50px',
+			x: '240px',
+			y: '60px',
 		},
 	],
 };
@@ -166,7 +186,7 @@ const config5 = {
 		},
 		{
 			task: 'shuffle',
-			cssClasses: '',
+			cssClasses: 'rounded',
 		},
 	],
 };
