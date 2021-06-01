@@ -8,15 +8,25 @@ import {
 } from './interfaces';
 import { allEqual, downloadFile, urlToFile } from './utils';
 
+/**
+ * Class representing a service that exposes an API for
+ *  playing audio files
+ * */
 export class PlayerService {
-	// automatically play next song
+	/** * When set to true the player will automatically
+	 * play the next song in the playlist when actual
+	 * song reaches end */
 	autoPlayNext = true;
 
-	// get if selected song is being played
+	/** * True when there is a song actually being played */
 	private _isPlaying = false;
-	get isPlaying() {
+	/** *
+	 * Get the _isPlaying value */
+	get isPlaying(): boolean {
 		return this._isPlaying;
 	}
+	/**
+	 * Set the _isPlaying value */
 	set isPlaying(newPlayingState: boolean) {
 		if (this._isPlaying == newPlayingState) return;
 		this._isPlaying = newPlayingState;
@@ -28,15 +38,23 @@ export class PlayerService {
 		}
 	}
 
-	// Automatically play on load
+	/**
+	 * If set to true, the player will automatically start playing
+	 * when a new song or playlist is loaded*/
 	autoPlay = false;
-	// Loop the playing sound when it ends
+	/**
+	 * If set to true, the actually played song will be played in loop */
 	loop = false;
-	// Wether or not to shuffle the playlist
+	/**
+	 * If set to true, the playlist will be shuffled in a random a order*/
 	_shuffle = false;
-	get shuffle() {
+	/**
+	 * Get the value of _shuffle */
+	get shuffle(): boolean {
 		return this._shuffle;
 	}
+	/**
+	 * Set the value of shuffle */
 	set shuffle(value: boolean) {
 		if (!this.playlist || this.playlist.length === 0) return;
 		this._shuffle = value;
@@ -56,11 +74,18 @@ export class PlayerService {
 		this.emit(PlayerServiceEventType.NewPlaylist);
 	}
 
-	// Wether or not to shuffle the playlist
+	/**
+	 * If set to true, player will keep loaded only 3 songs in the playlist:
+	 * the previous song, actual song and next song. This will not have any
+	 * effect if the playlist contains less than 5 songs*/
 	_unloadAll = false;
+	/**
+	 * Get the value of _unloadAll*/
 	get unloadAll() {
 		return this._unloadAll;
 	}
+	/**
+	 * Set the value of _unloadAll */
 	set unloadAll(value: boolean) {
 		if (value === this._unloadAll) return;
 		this._unloadAll = value;
@@ -71,11 +96,17 @@ export class PlayerService {
 		}
 	}
 
-	// The rate of playback. 0.5 to 4.0, with 1.0 being normal speed.
+	/**
+	 * The rate of the playback speed, a value between 0.5 to 4.0
+	 * 1.0 is the normal speed which is default value*/
 	private _rate = 1;
+	/**
+	 * Get the value of _rate */
 	get rate(): number {
 		return this._rate;
 	}
+	/**
+	 * Set the value of rate */
 	set rate(rate: number) {
 		if (rate <= 4 && rate >= 0) {
 			this._playlist.forEach((song) => {
@@ -87,11 +118,17 @@ export class PlayerService {
 		}
 	}
 
-	// VOLUME
+	/**
+	 * The volume of playback. a value between 0 to 1.0.
+	 * default value is the max : 1*/
 	private _volume = 1;
+	/**
+	 * Get the value of _volume */
 	get volume() {
 		return this._volume;
 	}
+	/**
+	 * Set the value of _volume */
 	set volume(level: number) {
 		if (level <= 1 && level >= 0) {
 			this._volume = level;
@@ -106,26 +143,39 @@ export class PlayerService {
 		}
 	}
 
-	// index in playlist
+	/**
+	 * The index in the playlist of the song
+	 * actually being played*/
 	private _index: number;
+	/** Get the value of _index */
 	get index() {
 		return this._index;
 	}
+	/**
+	 * Set the value of _index*/
 	set index(value: number) {
 		if (value == this._index) return;
 		this._index = value;
 		this.emit(PlayerServiceEventType.NewIndex);
 	}
 
-	// playlist
+	/**
+	 * An array containing a set set of song to be played
+	 * it can contain a single song or multiple songs loaded
+	 * from an RSS feed URL, audio file urls or Song Objects */
 	private _playlist: Song[];
+	/** @hidden : holds a copy of the playlist, but randomly reorder which is used as the playlist when _shuffle is set to true */
 	private _shuffledPlaylist: Song[];
+	/**
+	 * Get the value of _playlist*/
 	get playlist() {
 		if (this._shuffle === true) {
 			return this._shuffledPlaylist;
 		}
 		return this._playlist;
 	}
+	/**
+	 * Set the value of playlist */
 	set playlist(playlist: Song[]) {
 		this.stop(); // stop before doing anything else
 		this._playlist = playlist;
@@ -135,31 +185,44 @@ export class PlayerService {
 		this.emit(PlayerServiceEventType.NewPlaylist);
 	}
 
-	// current duration
+	/**
+	 * The total duration of the song actually being played*/
 	private _duration: number;
+	/**
+	 * Get the value of _duration */
 	get duration() {
 		return this._duration;
 	}
+	/** Set the value of _duration */
 	set duration(newDuration: number) {
 		if (this._duration == newDuration) return;
 		this._duration = newDuration;
 	}
 
-	// CURRENT PERCENTAGE
+	/** The progress in percentage of the song being played */
 	private _percentage: number;
+	/**
+	 * Get the value of _percentage */
 	get percentage() {
 		return this._percentage;
 	}
+	/**
+	 * Set the value of _percentage*/
 	set percentage(newPercentage: number) {
 		if (this._percentage == newPercentage) return;
 		this._percentage = newPercentage;
 	}
 
-	// CURRENT POSITION
+	/**
+	 * The progress in seconds of the song being played*/
 	private _position: number;
+	/**
+	 * Get the value of _position */
 	get position() {
 		return this._position;
 	}
+	/**
+	 * Set the value of _position */
 	set position(newPosition: number) {
 		if (this._position == newPosition) return;
 		this._position = newPosition;
@@ -171,6 +234,9 @@ export class PlayerService {
 		this.emit(PlayerServiceEventType.NewPosition);
 	}
 
+	/**
+	 * Create a player service
+	 */
 	constructor(update_delay = 100) {
 		this._playlist = [];
 		this._shuffledPlaylist = [];
@@ -183,11 +249,14 @@ export class PlayerService {
 		}, update_delay);
 	}
 
-	getRank(song: Song) {
+	/**
+	 * Returns the index of a given song in the playlist*/
+	getRank(song: Song): number {
 		return this.playlist.map((s) => s.id).indexOf(song.id);
 	}
 
-	private updatePositions() {
+	/** @hidden : called regularly to update positions  */
+	private updatePositions(): void {
 		if (this.playlist.length === 0) return;
 		this.playlist.forEach((song: Song) => {
 			if (song.howl && song.valid && song.loaded) {
@@ -199,7 +268,11 @@ export class PlayerService {
 		this.position = this.playlist[this.index].position;
 	}
 
-	getSong(index: number, instanciateHowlIfMissing = true) {
+	/**
+	 * Returns the song at index in the playlist, if instanciateHowlIfMissing
+	 * is set to true, it will load the song if it is not already loaded
+	 * this is important when unloadAll is set to true*/
+	getSong(index: number, instanciateHowlIfMissing = true): Song {
 		let song = this.playlist[index];
 		if (!song.valid) {
 			// song invalid is return as it is without loading any more howl
@@ -215,6 +288,7 @@ export class PlayerService {
 		return song;
 	}
 
+	/** @hidden : generate new Song using Howl */
 	private createHowlWithBindings(song: Song, index: number): Song | null {
 		// Extract the file extension from the URL or base64 data URI.
 		// eslint-disable-next-line @typescript-eslint/no-this-alias
@@ -293,7 +367,10 @@ export class PlayerService {
 		return song;
 	}
 
-	preloadPlaylist() {
+	/**
+	 * Preload all songs in the playlist, or at least 3 of them when unloadAll is true
+	 */
+	preloadPlaylist(): void {
 		if (this.unloadAll) {
 			this.unload();
 			return;
@@ -302,21 +379,29 @@ export class PlayerService {
 			song = this.createHowlWithBindings(song, index);
 		});
 	}
-	unloadSong(song: Song) {
+
+	/**
+	 * Unload a song */
+	unloadSong(song: Song): void {
 		if (song.valid && song.howl) {
 			song.howl.unload();
 			song.loaded = false;
 		}
 	}
-	loadSong(song: Song) {
+
+	/** Load a song*/
+	loadSong(song: Song): void {
 		if (song.valid && song.howl) {
 			song.howl.load();
 			song.loaded = true;
 		}
 	}
-	addSong(url: string) {
+
+	/**
+	 * Add a new track in the playlist */
+	addSong(songFileUrl: string): void {
 		const index = this.playlist.length;
-		const song = this.generateSongFromUrl(url, index);
+		const song = this.generateSongFromUrl(songFileUrl, index);
 		const newPlaylist = this.playlist;
 		newPlaylist.push(song);
 
@@ -324,7 +409,12 @@ export class PlayerService {
 		this.playlist[index] = this.createHowlWithBindings(song, index);
 	}
 
-	// should return as a promise the current index asked to be played
+	/**
+	 * Start playing. if on pause, it will resume the actual song
+	 * if not it will play the first song in the playlist.
+	 * if index param is given, it will play the song at the index.
+	 * It will resolve a promise with 1 if successfully play,
+	 * it will resolve -1 if the playlist is empty*/
 	public play(index?: number): Promise<number> {
 		if (index > -1 && index < this.playlist.length) {
 			this.index = index;
@@ -353,15 +443,24 @@ export class PlayerService {
 			}
 		}
 	}
-	public playWithOptions(options) {
+
+	/**
+	 * Same as play, start playing, but with the possibility to add additional
+	 * options such as stop playing all other songs in the playlist*/
+	public playWithOptions(options): Promise<number> {
 		if (options.index !== undefined) {
-			this.play(options.index);
+			return this.play(options.index);
 		} else {
-			this.play();
+			return this.play();
 		}
 	}
 
-	public pause(options?: { index?: number; pauseOthers?: boolean }) {
+	/**
+	 * Pause the song being played . if index provided it will put on pause
+	 * the song at that index in the playlist, this is useful when playing multiple
+	 * songs at the same time, a feature offered by this library.
+	 * If pauseOthers is true, it will put on pause all the tracks in the playlist*/
+	public pause(options?: { index?: number; pauseOthers?: boolean }): void {
 		if (this.playlist.length === 0) return;
 		if (
 			options &&
@@ -398,7 +497,10 @@ export class PlayerService {
 		this.updatePositions();
 	}
 
-	public stop(index?: number) {
+	/**
+	 * Stop the song being played, if index provided it will stop the song
+	 * at that index in the playlist */
+	public stop(index?: number): void {
 		if (this.playlist.length === 0) return;
 
 		if (index) {
@@ -420,7 +522,10 @@ export class PlayerService {
 		}
 	}
 
-	public next() {
+	/**
+	 * Play next song in the playlist, if we are already on the last track
+	 * it will play the first one*/
+	public next(): void {
 		if (this.playlist.length === 0) {
 			console.warn("Can't do next: no file available.");
 			return;
@@ -470,7 +575,11 @@ export class PlayerService {
 		this.emit(PlayerServiceEventType.Next);
 	}
 
-	public prev() {
+	/**
+	 * Play the previously played song in the playlist if actual
+	 * song being played hasn't been played for more than 2 seconds,
+	 * otherwise it will simply restart the actual song*/
+	public prev(): void {
 		if (this.playlist.length === 0) return;
 
 		const song = this.getSong(this.index);
@@ -527,7 +636,11 @@ export class PlayerService {
 		this.emit(PlayerServiceEventType.Prev);
 	}
 
-	public seekPerPercentage(percentage: number, index?: number) {
+	/**
+	 * Jump to a given progress percentage of actual song,
+	 * if index is provided, it will make the jump on the song at the
+	 * given index in the playlist  */
+	public seekPerPercentage(percentage: number, index?: number): void {
 		if (this.playlist.length === 0) return;
 
 		let indexToSeek = this.index;
@@ -546,8 +659,11 @@ export class PlayerService {
 		}
 	}
 
-	// Move player head to a given time position (s)
-	public seekPerPosition(position: number, index?: number) {
+	/**
+	 * Jump to a given progress position in seconds of actual song,
+	 * if index is provided, it will make the jump on the song at the
+	 * given index in the playlist  */
+	public seekPerPosition(position: number, index?: number): void {
 		if (this.playlist.length === 0) return;
 
 		let indexToSeek = this.index;
@@ -577,7 +693,9 @@ export class PlayerService {
 		}
 	}
 
-	public getSongTimeLeft(index?: number) {
+	/** Returns the ETA of the actual song in seconds, if index provided it will
+	 * return the ETA for the song at index in the playlist */
+	public getSongTimeLeft(index?: number): number {
 		if (this.playlist.length === 0) return -1;
 
 		let indexToSeek = this.index;
@@ -596,7 +714,9 @@ export class PlayerService {
 		}
 	}
 
-	public getSongTotalTime(index?: number) {
+	/** Returns the total duration in seconds of the song at index
+	 * otherwise it returns the total duration of the actual song */
+	public getSongTotalTime(index?: number): number {
 		if (this.playlist.length === 0) return -1;
 
 		let indexToSeek = this.index;
@@ -615,7 +735,8 @@ export class PlayerService {
 		}
 	}
 
-	public setPlaylistFromUrls(urls: string[]) {
+	/** Load a playlist from an array of song files URI*/
+	public setPlaylistFromUrls(urls: string[]): void {
 		this.playlist = urls.map((url, index) => {
 			const song: Song = {
 				songTitle: 'Song ' + index,
@@ -627,6 +748,7 @@ export class PlayerService {
 		});
 	}
 
+	/** Load a playlist from Partial Song object */
 	public setPlaylistFromSongObjects(songs: Partial<Song>[]) {
 		this.playlist = songs.map((songData, index) => {
 			const song: Song = {
@@ -650,7 +772,7 @@ export class PlayerService {
 	 * @param index
 	 * @returns
 	 */
-	private generateSongFromUrl(url: string, index: number) {
+	private generateSongFromUrl(url: string, index: number): Song {
 		return {
 			songTitle: 'Song ' + index,
 			file: url,
@@ -659,7 +781,9 @@ export class PlayerService {
 		} as Song;
 	}
 
-	public setPLaylistFromRSSFeedURL(url: string) {
+	/**
+	 * Load a playlist from the URL of a RSS feed file */
+	public setPLaylistFromRSSFeedURL(url: string): Promise<void> {
 		return fetch(url)
 			.then((r) => r.text())
 			.then((r) => {
@@ -705,7 +829,9 @@ export class PlayerService {
 			});
 	}
 
-	private extractImage(elt: Element) {
+	/** @hidden : used to get the picture of a podcast show and/or the picture
+	 * of some of its episodes */
+	private extractImage(elt: Element): string | null {
 		try {
 			const simpleImage = elt.querySelector('image');
 
@@ -733,7 +859,9 @@ export class PlayerService {
 		return null;
 	}
 
-	async download(index?: number) {
+	/** Allows to download song file from its index in the playlist.
+	 * If the index is not provided, it will download the track actually played*/
+	async download(index?: number): Promise<void> {
 		const indexToDowload = index || this.index;
 		const song = this.playlist[indexToDowload];
 		downloadFile(
@@ -745,7 +873,8 @@ export class PlayerService {
 		);
 	}
 
-	private shufflePlaylist() {
+	/** Allows to shuffle the playlist*/
+	private shufflePlaylist(): void {
 		let currentIndex = this._shuffledPlaylist.length,
 			temporaryValue,
 			randomIndex;
@@ -764,9 +893,9 @@ export class PlayerService {
 		this._shuffledPlaylist = array;
 	}
 
-	/* CALLBACKS ON UPDATE */
+	/** CALLBACKS ON UPDATE */
 
-	addNewOnCallback(callback: (event: PlayerServiceEvent) => void) {
+	addNewOnCallback(callback: (event: PlayerServiceEvent) => void): void {
 		if (this.playingEventsCallbacks.some((value) => value === callback)) {
 			console.warn('Callback already present: ignored');
 			return;
@@ -774,7 +903,7 @@ export class PlayerService {
 
 		this.playingEventsCallbacks.push(callback);
 	}
-	/* CALLBACKS ON STATE CHANGE */
+	/** CALLBACKS ON STATE CHANGE */
 	private playingEventsCallbacks: ((event: PlayerServiceEvent) => void)[] =
 		[];
 	private PlayerStateChangedCallback(event: PlayerServiceEvent) {
@@ -783,6 +912,8 @@ export class PlayerService {
 		});
 	}
 
+	/**
+	 * Responsible for emitting events whenever the player state changes*/
 	private emit(type: PlayerServiceEventType) {
 		const event: PlayerServiceEvent = {
 			type,
