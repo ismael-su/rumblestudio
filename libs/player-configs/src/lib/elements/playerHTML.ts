@@ -92,6 +92,10 @@ export class PlayerHTML extends HTMLElement {
 		if (!this.playerService) {
 			return;
 		}
+		const { stopOthers } = options.detail;
+		if (stopOthers === true) {
+			this.playerService.pause();
+		}
 		this.playerService.playWithOptions(options);
 	}
 

@@ -4,6 +4,7 @@ import { PlayerHTML } from './elements/playerHTML';
 import { PlayerService } from '@rumblestudio/player-service';
 import { LinearBar } from './elements/LinearBar';
 import CONFIGS from './configs';
+import { SimplePlaylist } from './elements/SimplePlaylist';
 const { config1, config2, config3, config4, config5 } = CONFIGS;
 
 const MaterialIcons = 'https://fonts.googleapis.com/icon?family=Material+Icons';
@@ -38,7 +39,7 @@ function getButtonOrBar(
 	switch (element.task) {
 		case 'play':
 			button.addEventListener('click', () => {
-				player.play({});
+				player.play({ detail: { stopOthers: true } });
 			});
 			break;
 		case 'pause':
@@ -158,6 +159,9 @@ export function generateLayout(
 	} else {
 		container.appendChild(div);
 	}
+	const playlist = new SimplePlaylist();
+	playlist.playerHTML = playerHTML;
+	container.appendChild(playlist);
 	return playerHTML;
 }
 
@@ -170,6 +174,7 @@ const iconSet = {
 	forward: 'fast_forward',
 	rewind: 'fast_rewind',
 	shuffle: 'shuffle',
+	image: 'image',
 	loop: 'loop',
 };
 const availableTasks = [
@@ -182,6 +187,7 @@ const availableTasks = [
 	'rewind',
 	'shuffle',
 	'loop',
+	'image',
 	'bar',
 ];
 export interface Configuration {

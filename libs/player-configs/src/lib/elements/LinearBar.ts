@@ -41,7 +41,6 @@ export class LinearBar extends GenericVisual {
 	}
 
 	protected setListeners() {
-		console.log('setting listners');
 		this.playerHTML.addEventListener('new position', (payload) =>
 			this.updateVisual(payload),
 		);
@@ -49,8 +48,6 @@ export class LinearBar extends GenericVisual {
 	}
 
 	updateVisual = (payload?) => {
-		console.log('UPDATE');
-
 		if (payload) {
 			console.log(payload);
 			this.percentage = this.playerHTML.percentage;
