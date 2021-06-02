@@ -27,7 +27,8 @@
 		"dep-graph": "nx dep-graph",
 		"help": "nx help",
 		"release": "standard-version",
-		"commit": "git-cz"
+		"commit": "git-cz",
+		"doc": "cd ./scripts && doc.sh"
 	},
 	"private": false,
 	"dependencies": {
@@ -105,6 +106,8 @@
 		"standard-version": "^9.3.0",
 		"ts-jest": "26.5.6",
 		"ts-node": "~9.1.1",
+		"typedoc": "^0.20.36",
+		"typedoc-plugin-markdown": "^3.9.0",
 		"typescript": "~4.2.4"
 	},
 	"config": {

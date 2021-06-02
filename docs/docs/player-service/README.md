@@ -1,3 +1,5 @@
+@rumblestudio/player-service / [Exports](modules.md)
+
 # @rumblestudio/**player-service**
 
 **Rumble Player** is an open source HTML5 audio player.
@@ -25,7 +27,7 @@ To use the library within your Angular project the best way is to use an Angular
 ```shell
 npm install -g @angular/cli # install Angular
 ng new demo-player-angular # Create a new Angular app
-cd demo-player-angular
+cd demo-player-angula
 ng g s audio # generate a service
 ```
 
@@ -62,13 +64,12 @@ export class AudioService extends PlayerService {
 
 	constructor() {
 		super(); // needed as this class extends the Rumble Player Service
-		this.addNewOnCallback((event: PlayerServiceEvent) => this.on(event));
+		this.addNewOnCallback(this.on);
 	}
-
-	on(event: PlayerServiceEvent) {
+	private on(event: PlayerServiceEvent) {
 		// We convert the events into RxJS behaviour subject
 		// so that you can subscribe to them the way you want.
-		console.log('[audioService](on) new event:', event, this);
+		console.log('[audioService](on) new event:', event);
 		this.playing$.next(this.isPlaying);
 		this.index$.next(this.index);
 		this.position$.next(this.position);
