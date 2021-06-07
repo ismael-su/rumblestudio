@@ -1,6 +1,6 @@
 const config1 = {
 	dimensions: {
-		height: '30px',
+		height: '520px',
 		width: '600px',
 	},
 	layout: {
@@ -11,14 +11,42 @@ const config1 = {
 		{
 			task: 'play',
 			cssClasses: '',
+			width: '275px',
+			height: '50px',
+			x: '10px',
+			y: '5px',
+		},
+		{
+			task: 'stop',
+			cssClasses: '',
+			width: '50px',
+			height: '50px',
+			x: '10px',
+			y: '60px',
 		},
 		{
 			task: 'bar',
 			cssClasses: '',
+			width: '140px',
+			height: '50px',
+			x: '80px',
+			y: '80px',
+		},
+		{
+			task: 'playlist',
+			cssClasses: '',
+			width: '540px',
+			height: '300px',
+			x: '10px',
+			y: '120px',
 		},
 		{
 			task: 'pause',
 			cssClasses: '',
+			width: '50px',
+			height: '50px',
+			x: '540px',
+			y: '60px',
 		},
 	],
 };
@@ -166,7 +194,7 @@ const config5 = {
 		},
 		{
 			task: 'shuffle',
-			cssClasses: '',
+			cssClasses: 'rounded',
 		},
 	],
 };

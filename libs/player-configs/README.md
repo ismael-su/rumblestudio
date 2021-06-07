@@ -2,7 +2,7 @@
 
 **Rumble Player** is an open source HTML5 audio player.
 
-this lib contains default layout for the [Rumble player](https://www.npmjs.com/package/@rumblestudio/player-service) layout UI, which is also a dependency.
+this lib contains the widget generator for the [Rumble player](https://www.npmjs.com/package/@rumblestudio/player-service) layout UI, which is also a dependency.
 Just give it the DOM id of an HTMLElement container, and it will inflate it with controls for the player.
 
 ## Install

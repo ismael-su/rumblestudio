@@ -21,9 +21,6 @@ interface IState {
 }
 
 export default class Home extends React.Component<IProps, IState> {
-	constructor(props) {
-		super(props);
-	}
 	static contextType = Service;
 
 	render() {

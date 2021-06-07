@@ -61,6 +61,7 @@ export default class Playlist extends React.Component<PProps, PState> {
 				<div className={'playlist-container-1'}>
 					<div style={{ position: 'relative' }}>
 						<img
+							alt={''}
 							className={'art-2'}
 							src={this.state.defaultImage}
 						/>

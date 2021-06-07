@@ -10,7 +10,7 @@
 
 ### Widget generator
 
-The library is **not yet available**.
+[Go to documentation](./libs/player-configs#readme)
 
 ## Contribute
 

@@ -76,7 +76,6 @@ export class PlayerHTML extends HTMLElement {
 	/**
 	 * Method in charge of dispatching events received from the service  */
 	private eventsDispatcher(payload: PlayerServiceEvent): void {
-		console.log('Dispatching');
 		const e = new CustomEvent(payload.type, { detail: payload.state });
 		this.dispatchEvent(e);
 	}
@@ -91,6 +90,10 @@ export class PlayerHTML extends HTMLElement {
 	public play(options): Promise<number> {
 		if (!this.playerService) {
 			return;
+		}
+		const { stopOthers } = options;
+		if (stopOthers === true) {
+			this.playerService.pause();
 		}
 		this.playerService.playWithOptions(options);
 	}

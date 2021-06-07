@@ -1,10 +1,4 @@
-import {
-	AfterViewInit,
-	Component,
-	ElementRef,
-	OnInit,
-	ViewChild,
-} from '@angular/core';
+import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { LoadDialogComponent } from './load-dialog/load-dialog.component';
 import { PlayerBridgeService } from './player-bridge.service';
@@ -45,47 +39,52 @@ export class SpotifyComponent implements AfterViewInit {
 
 	ngAfterViewInit() {
 		if (this.image) {
-		  this.bridge.playlist.asObservable().subscribe(playlist => {
-		    if (playlist.length>0 && playlist[0].albumCover){
-          const icon = this.image.nativeElement;
-          this.imageURL = playlist[0].albumCover;
-          icon.setAttribute('src', this.imageURL);
-        } else {
-          const icon = this.image.nativeElement;
-          this.imageURL = this.defaultImage;
-          icon.setAttribute('src', this.imageURL);
-        }
-		    this.playlist = playlist
-      })
-      this.bridge.index.asObservable().subscribe(index=>{
-        this.index = index;
-      })
+			this.bridge.playlist.asObservable().subscribe((playlist) => {
+				if (playlist.length > 0 && playlist[0].albumCover) {
+					const icon = this.image.nativeElement;
+					this.imageURL = playlist[0].albumCover;
+					icon.setAttribute('src', this.imageURL);
+				} else {
+					const icon = this.image.nativeElement;
+					this.imageURL = this.defaultImage;
+					icon.setAttribute('src', this.imageURL);
+				}
+				this.playlist = playlist;
+			});
+			this.bridge.index.asObservable().subscribe((index) => {
+				this.index = index;
+			});
 
-      this.bridge.playing.asObservable().subscribe(value => {
-        if (this.playlist.length>0 && this.playlist[this.index].songCover){
-          const icon = this.image.nativeElement;
-          this.imageURL = this.playlist[this.index].songCover;
-          icon.setAttribute('src', this.imageURL);
-        } else {
-          const icon = this.image.nativeElement;
-          this.imageURL = this.defaultImage;
-          icon.setAttribute('src', this.imageURL);
-        }
-      })
+			this.bridge.playing.asObservable().subscribe(() => {
+				if (
+					this.playlist.length > 0 &&
+					this.playlist[this.index].songCover
+				) {
+					const icon = this.image.nativeElement;
+					this.imageURL = this.playlist[this.index].songCover;
+					icon.setAttribute('src', this.imageURL);
+				} else {
+					const icon = this.image.nativeElement;
+					this.imageURL = this.defaultImage;
+					icon.setAttribute('src', this.imageURL);
+				}
+			});
 		}
 		if (this.linearBar) {
 			this.linearBar.nativeElement.parentElement.addEventListener(
 				'click',
 				(event) => {
-					const bcr = this.linearBar.nativeElement.parentElement.getBoundingClientRect();
+					const bcr =
+						this.linearBar.nativeElement.parentElement.getBoundingClientRect();
 					const percentage = (event.clientX - bcr.left) / bcr.width;
 					this.bridge.seekPerPercentage(percentage);
-				}
+				},
 			);
-			this.bridge.percentage.asObservable().subscribe(percentage => {
-			  this.position = this.bridge.position.getValue()
-        this.linearBar.nativeElement.style.width = (percentage * 100).toFixed(0) + '%';
-      })
+			this.bridge.percentage.asObservable().subscribe((percentage) => {
+				this.position = this.bridge.position.getValue();
+				this.linearBar.nativeElement.style.width =
+					(percentage * 100).toFixed(0) + '%';
+			});
 		}
 	}
 
