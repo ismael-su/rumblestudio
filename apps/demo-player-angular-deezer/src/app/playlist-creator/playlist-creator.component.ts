@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Song } from '@rumblestudio/player-service';
 import { AudioService } from '../audio.service';
 
 @Component({
@@ -29,6 +30,29 @@ export class PlaylistCreatorComponent {
 		}
 
 		this.isOpen = !this.isOpen;
+	}
+
+	addSpecificPlaylist() {
+		const songs: Partial<Song>[] = [
+			{
+				songTitle: 'first song',
+				file: 'assets/audio/podcast1.mp3',
+				author: 'author 1',
+				songCover:
+					'https://letempsdunvoyage.com/wp-content/uploads/2019/07/PLAYLIST-HOTEL-1170x780.png',
+				albumTitle: 'amazing playlist',
+			},
+			{
+				songTitle: 'second song',
+				file: 'assets/audio/podcast2.mp3',
+				author: 'author 2',
+				songCover:
+					'https://letempsdunvoyage.com/wp-content/uploads/2019/07/PLAYLIST-HOTEL-1170x780.png',
+				albumTitle: 'amazing playlist',
+			},
+		];
+		this.audioService.setPlaylistFromSongObjects(songs);
+		this.asPlaylist = true;
 	}
 
 	async addPlaylist(form) {

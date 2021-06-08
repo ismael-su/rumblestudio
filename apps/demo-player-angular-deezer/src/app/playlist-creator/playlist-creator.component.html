@@ -3,7 +3,13 @@
 		<div>
 			<p>+</p>
 		</div>
-		<p>Create a playlist</p>
+		<p>RSS Link playlist</p>
+	</button>
+	<button (click)="addSpecificPlaylist()" class="create">
+		<div>
+			<p>+</p>
+		</div>
+		<p>Add a playlist</p>
 	</button>
 	<a
 		routerLink="/playlist/1"
@@ -17,6 +23,7 @@
 		<mat-icon>play_circle_outline</mat-icon>
 	</a>
 </div>
+
 <div class="pop-up" [ngClass]="[popUpClass]">
 	<div>
 		<mat-icon (click)="popupAppear()" class="close">close</mat-icon>

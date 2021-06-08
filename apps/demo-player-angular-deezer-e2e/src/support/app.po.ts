@@ -1,1 +1,5 @@
-export const getGreeting = () => cy.get('h1');
+export const addPlaylist = () => {
+	cy.visit('/playlist');
+
+	cy.get('.create').contains('Add a playlist').click();
+};
