@@ -14,7 +14,7 @@
 
 ### Widget generator
 
-[Not Implemented]()
+Not Implemented
 
 ## Contribute
 
