@@ -8,9 +8,13 @@
 
 [Go to documentation](./libs/player-service#readme)
 
-### Widget generator
+### Player Configs
 
 [Go to documentation](./libs/player-configs#readme)
+
+### Widget generator
+
+Not Implemented
 
 ## Contribute
 

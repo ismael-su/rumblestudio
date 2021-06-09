@@ -4,19 +4,29 @@
 <div id="container-body">
 	<textarea
 		id="json"
+		[value]="this.json"
 		(input)="onJsonChange($event)"
 		placeholder="Insert JSON configuration here"
 		rows="20"
 	></textarea>
 	<br />
+	<button (click)="defaultConfig()">Fill with default CONFIG</button>
+	<br />
+	<br />
 	<textarea
 		id="css"
 		(input)="onCssChange($event)"
+		[value]="this.css"
 		rows="10"
 		placeholder="Insert CSS Styles here"
 	></textarea>
 	<br />
+	<button (click)="defaultCSS()">Fill with default CSS</button>
+	<br />
+	<br />
 
 	<button (click)="loadConfig()">Load config and Render Layout</button>
 </div>
+
+
 -->
