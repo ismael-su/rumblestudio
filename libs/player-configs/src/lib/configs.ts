@@ -1,0 +1,330 @@
+const config1 = {
+	dimensions: {
+		height: '520px',
+		width: '600px',
+	},
+	layout: {
+		rows: 1,
+		columns: 3,
+	},
+	elements: [
+		{
+			task: 'play',
+			cssClasses: '',
+			width: '580px',
+			height: '50px',
+			x: '10px',
+			y: '5px',
+		},
+		{
+			task: 'stop',
+			cssClasses: '',
+			width: '50px',
+			height: '50px',
+			x: '10px',
+			y: '60px',
+		},
+		{
+			task: 'bar',
+			cssClasses: '',
+			width: '440px',
+			height: '50px',
+			x: '80px',
+			y: '80px',
+		},
+		{
+			task: 'playlist',
+			cssClasses: '',
+			width: '540px',
+			height: '300px',
+			x: '10px',
+			y: '120px',
+		},
+		{
+			task: 'pause',
+			cssClasses: '',
+			width: '50px',
+			height: '50px',
+			x: '540px',
+			y: '60px',
+		},
+	],
+};
+
+const config2 = {
+	dimensions: {
+		height: '60px',
+		width: '600px',
+	},
+	layout: {
+		rows: 1,
+		columns: 4,
+	},
+	elements: [
+		{
+			task: 'play',
+			cssClasses: '',
+			width: '50px',
+			height: '50px',
+			x: '10px',
+			y: '5px',
+		},
+		{
+			task: 'pause',
+			cssClasses: '',
+			width: '50px',
+			height: '50px',
+			x: '70px',
+			y: '5px',
+		},
+		{
+			task: 'bar',
+			cssClasses: '',
+			width: '360px',
+			height: '20px',
+			x: '150px',
+			y: '20px',
+		},
+		{
+			task: 'stop',
+			cssClasses: '',
+			width: '50px',
+			height: '50px',
+			x: '540px',
+			y: '5px',
+		},
+	],
+};
+
+const config3 = {
+	dimensions: {
+		height: '60px',
+		width: '600px',
+	},
+	layout: {
+		rows: 1,
+		columns: 6,
+	},
+	elements: [
+		{
+			task: 'play',
+			cssClasses: '',
+			width: '50px',
+			height: '50px',
+			x: '10px',
+			y: '5px',
+		},
+		{
+			task: 'pause',
+			cssClasses: '',
+			width: '50px',
+			height: '50px',
+			x: '70px',
+			y: '5px',
+		},
+		{
+			task: 'bar',
+			cssClasses: '',
+			width: '240px',
+			height: '20px',
+			x: '150px',
+			y: '20px',
+		},
+		{
+			task: 'stop',
+			cssClasses: '',
+			width: '50px',
+			height: '50px',
+			x: '420px',
+			y: '5px',
+		},
+		{
+			task: 'prev',
+			cssClasses: '',
+			width: '50px',
+			height: '50px',
+			x: '480px',
+			y: '5px',
+		},
+		{
+			task: 'next',
+			cssClasses: '',
+			width: '50px',
+			height: '50px',
+			x: '540px',
+			y: '5px',
+		},
+	],
+};
+
+const config4 = {
+	dimensions: {
+		height: '60px',
+		width: '600px',
+	},
+	layout: {
+		rows: 1,
+		columns: 10,
+	},
+	elements: [
+		{
+			task: 'play',
+			cssClasses: '',
+			width: '50px',
+			height: '50px',
+			x: '10px',
+			y: '5px',
+		},
+		{
+			task: 'pause',
+			cssClasses: '',
+			width: '50px',
+			height: '50px',
+			x: '70px',
+			y: '5px',
+		},
+		{
+			task: 'bar',
+			cssClasses: '',
+			width: '240px',
+			height: '20px',
+			x: '150px',
+			y: '20px',
+		},
+		{
+			task: 'rewind',
+			cssClasses: '',
+			width: '50px',
+			height: '50px',
+			x: '420px',
+			y: '5px',
+		},
+		{
+			task: 'forward',
+			cssClasses: '',
+			width: '50px',
+			height: '50px',
+			x: '480px',
+			y: '5px',
+		},
+		{
+			task: 'loop',
+			cssClasses: '',
+			width: '50px',
+			height: '50px',
+			x: '540px',
+			y: '5px',
+		},
+	],
+};
+const config5 = {
+	dimensions: {
+		backgroundColor: 'transparent',
+		height: '100vh',
+		width: '100vw',
+	},
+	layout: {
+		rows: 1,
+		columns: 3,
+	},
+	elements: [
+		{
+			task: 'loop',
+			cssClasses: 'rounded',
+			width: '50px',
+			height: '50px',
+			x: '40vw',
+			y: '90vh',
+		},
+		{
+			task: 'prev',
+			cssClasses: 'rounded',
+			width: '50px',
+			height: '50px',
+			x: '45vw',
+			y: '90vh',
+		},
+		{
+			task: 'rewind',
+			cssClasses: 'rounded',
+			width: '50px',
+			height: '50px',
+			x: '50vw',
+			y: '90vh',
+		},
+		{
+			task: 'play',
+			cssClasses: 'rounded',
+			width: '50px',
+			height: '50px',
+			x: '55vw',
+			y: '90vh',
+		},
+		{
+			task: 'pause',
+			cssClasses: 'rounded',
+			width: '50px',
+			height: '50px',
+			x: '60vw',
+			y: '90vh',
+		},
+		{
+			task: 'stop',
+			cssClasses: 'rounded',
+			width: '50px',
+			height: '50px',
+			x: '65vw',
+			y: '90vh',
+		},
+		{
+			task: 'forward',
+			cssClasses: 'rounded',
+			width: '50px',
+			height: '50px',
+			x: '70vw',
+			y: '90vh',
+		},
+		{
+			task: 'next',
+			cssClasses: 'rounded',
+			width: '50px',
+			height: '50px',
+			x: '75vw',
+			y: '90vh',
+		},
+
+		{
+			task: 'bar',
+			cssClasses: '',
+			width: '60vw',
+			height: '50px',
+			x: '30vw',
+			y: '86vh',
+		},
+		{
+			task: 'playlist',
+			cssClasses: '',
+			width: '60vw',
+			height: '70vh',
+			x: '20vw',
+			y: '10vh',
+		},
+		{
+			task: 'image',
+			cssClasses: '',
+			width: '15vh',
+			height: '15vh',
+			x: '20vw',
+			y: '84vh',
+		},
+	],
+};
+
+const CONFIGS = {
+	config1,
+	config2,
+	config3,
+	config4,
+	config5,
+};
+export default CONFIGS;

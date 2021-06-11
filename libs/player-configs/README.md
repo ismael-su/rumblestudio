@@ -5,6 +5,8 @@
 this lib contains the widget generator for the [Rumble player](https://www.npmjs.com/package/@rumblestudio/player-service) layout UI, which is also a dependency.
 Just give it the DOM id of an HTMLElement container, and it will inflate it with controls for the player.
 
+[Online Demo](https://player-configs.web.app/)
+
 ## Install
 
 Install the package `@rumblestudio/player-configs`:

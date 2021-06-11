@@ -3,6 +3,7 @@ import {
 	Configuration,
 	generateLayout,
 	isValid,
+	CONFIGS,
 } from '@rumblestudio/player-configs';
 import { PlayerService } from '@rumblestudio/player-service';
 
@@ -46,11 +47,24 @@ export class AppComponent {
 		}
 	}
 
-	defaultConfig() {
-		this.json =
-			'{"dimensions":{"height":"120px","width":"300px"},"layout":{"rows":1,"columns":3},"elements":[{"task":"play","cssClasses":"","width":"100px","height":"50px","x":"10px","y":"5px"},\n' +
-			'{"task":"stop","cssClasses":"blue-yellow","width":"80px","height":"50px","x":"110px","y":"5px"},\n' +
-			'{"task":"pause","cssClasses":"","width":"100px","height":"50px","x":"190px","y":"5px"},{"task":"prev","cssClasses":"rounded blue-yellow","width":"50px","height":"50px","x":"10px","y":"60px"},{"task":"bar","cssClasses":"","width":"140px","height":"50px","x":"80px","y":"80px"},{"task":"next","cssClasses":"rounded","width":"50px","height":"50px","x":"240px","y":"60px"}]}\n';
+	defaultConfig(conf: number) {
+		switch (conf) {
+			case 1:
+				this.json = JSON.stringify(CONFIGS.default.config1);
+				break;
+			case 2:
+				this.json = JSON.stringify(CONFIGS.default.config2);
+				break;
+			case 3:
+				this.json = JSON.stringify(CONFIGS.default.config3);
+				break;
+			case 4:
+				this.json = JSON.stringify(CONFIGS.default.config4);
+				break;
+			case 5:
+				this.json = JSON.stringify(CONFIGS.default.config5);
+				break;
+		}
 	}
 	defaultCSS() {
 		this.css =
